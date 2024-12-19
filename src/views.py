@@ -1,4 +1,5 @@
 import datetime
+import os
 
 def make_interval_dates(start_data:str, diap_data:str)->str:
     ''' Принимает дату и обозначение диапазона, возвращает стартовую дату'''
@@ -21,6 +22,11 @@ def make_interval_dates(start_data:str, diap_data:str)->str:
         raise ValueError
 
 
-z = make_interval_dates('18.12.2024','W')
-print(z)
+def take_filename_from_data():
+    '''Функция возвращает название файла. который находится в директории data'''
+    try:
+        os.chdir('../data')
+    except Exception:
+        os.chdir('data')
+    return os.listdir()[0]
 
