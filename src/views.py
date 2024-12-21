@@ -1,10 +1,11 @@
 import datetime
 import os
+import pandas as pd
 
 def make_interval_dates(start_data:str, diap_data:str)->str:
     ''' Принимает дату и обозначение диапазона, возвращает стартовую дату'''
 
-    data_object = datetime.datetime.strptime(start_data, '%d.%m.%Y')
+    data_object = datetime.datetime.strptime(start_data, "%Y-%d-%m %H:%M:%S")
     #обрабатываем когда подаётся W - начало интервала - понедельник текущей недели
     if diap_data.upper() == 'W':
         weekday_number = data_object.isoweekday()
@@ -12,9 +13,9 @@ def make_interval_dates(start_data:str, diap_data:str)->str:
         return data_monday
     # обрабатываем когда подаётся M - начало интервала - первое число этого месяца
     elif diap_data.upper() == 'M':
-        return data_object.replace(day=1)
+        return data_object.replace(day=1, hour=0, minute=0, second=0)
     elif diap_data.upper() == 'Y':
-        return data_object.replace(day=1, month=1)
+        return data_object.replace(day=1, month=1, hour=0, minute=0, second=0)
     elif diap_data.upper() == 'ALL':
         return 'all_data'
     else:
@@ -30,3 +31,10 @@ def take_filename_from_data():
         os.chdir('data')
     return os.listdir()[0]
 
+def get_data_from_exel(filename):
+    with open(filename, 'r') as f:
+        pass
+
+
+l = make_interval_dates('2024-21-12 20:00:15', 'M')
+print(l)
