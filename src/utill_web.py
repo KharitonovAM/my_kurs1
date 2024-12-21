@@ -10,7 +10,7 @@ def make_interval_dates(start_data:str, diap_data:str)->str:
     if diap_data.upper() == 'W':
         weekday_number = data_object.isoweekday()
         data_monday = data_object - datetime.timedelta(days= (weekday_number-1))
-        return data_monday
+        return data_monday.replace(hour=0, minute=0, second=0)
     # обрабатываем когда подаётся M - начало интервала - первое число этого месяца
     elif diap_data.upper() == 'M':
         return data_object.replace(day=1, hour=0, minute=0, second=0)
@@ -30,3 +30,7 @@ def take_filename_from_data():
     except Exception:
         os.chdir('data')
     return os.listdir()[0]
+
+
+l = make_interval_dates('2024-21-12 20:00:15', 'W')
+print(l)
