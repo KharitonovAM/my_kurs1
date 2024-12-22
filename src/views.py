@@ -111,15 +111,13 @@ def events(start_data, date_range = 'M'):
     currencies_list_dict_by_task = make_list_dict_by_task(currencies_list_dict, "currency", "rate")
     stocks_list_dict_by_task = make_list_dict_by_task(stocks_list_dict, "stock", "price")
 
-
-
     #собираем вложенный словарь по расходам
     expenses_dict = {}
     expenses_dict["total_amount"] = expenses_amount
     expenses_dict["main"] = expenses_list
     expenses_dict["transfers_and_cash"] = cash_list
 
-    # собираем вложенный словарь по доходам
+    #собираем вложенный словарь по доходам
     income_dict = {}
     income_dict["total_amount"] = income_amount
     income_dict["main"] = income_list
@@ -133,20 +131,3 @@ def events(start_data, date_range = 'M'):
 
     json_data = json.dumps(return_dict, ensure_ascii = False, indent = 4)
     print(json_data)
-
-
-
-'''
-a,b,c = get_data_from_exel('G:\Учеба скай про\курсовые работы\Курсовая работа 1\pythonProject\data\operations.xlsx', 0, '2019-02-15 10:01:15','W')
-d, e = get_data_from_exel('G:\Учеба скай про\курсовые работы\Курсовая работа 1\pythonProject\data\operations.xlsx', 1, '2020-10-29 11:10:45','Y')
-
-a = make_list_dict_by_task(a)
-b = make_list_dict_by_task(b)
-d = make_list_dict_by_task(d)
-print('--------------------')
-print(a)
-print('--------------------')
-print(b)
-print('--------------------')
-print(d)
-print('--------------------')'''

@@ -44,6 +44,3 @@ def make_list_dict_by_task(list_dict, first_category, second_category):
             result_dict[second_category] = v
         result_list.append(result_dict)
     return result_list
-
-
-

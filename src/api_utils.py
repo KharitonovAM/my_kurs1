@@ -26,13 +26,3 @@ def get_stock_prices(stock):
         return response.json()
     else:
        return f'Error:, {response.status_code}, {response.text}'
-
-
-
-'''
-{'ticker': 'AAPL', 'name': 'Apple Inc.', 'price': 254.49, 'exchange': 'NASDAQ', 'updated': 1734728403, 'currency': 'USD'}
-{'ticker': 'AMZN', 'name': 'Amazon.com, Inc.', 'price': 224.92, 'exchange': 'NASDAQ', 'updated': 1734728403, 'currency': 'USD'}
-{'currency_pair': 'CNY_GBP', 'exchange_rate': 0.109063}
-{'currency_pair': 'CHF_GBP', 'exchange_rate': 0.890234}
-{'currency_pair': 'DKK_GBP', 'exchange_rate': 0.111271}
-'''
