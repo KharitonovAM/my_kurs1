@@ -26,3 +26,5 @@ def get_stock_prices(stock):
         return response.json()
     else:
        return f'Error:, {response.status_code}, {response.text}'
+
+
