@@ -5,7 +5,7 @@ import pandas as pd
 def make_interval_dates(start_data:str, diap_data:str)->str:
     ''' Принимает дату и обозначение диапазона, возвращает стартовую дату'''
 
-    data_object = datetime.datetime.strptime(start_data, "%Y-%d-%m %H:%M:%S")
+    data_object = datetime.datetime.strptime(start_data, "%Y-%m-%d %H:%M:%S")
     #обрабатываем когда подаётся W - начало интервала - понедельник текущей недели
     if diap_data.upper() == 'W':
         weekday_number = data_object.isoweekday()
@@ -32,5 +32,6 @@ def take_filename_from_data():
     return os.listdir()[0]
 
 
-l = make_interval_dates('2024-21-12 20:00:15', 'W')
-print(l)
+
+
+
