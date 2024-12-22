@@ -89,5 +89,3 @@ print(b)
 print('--------------------')
 print(d)
 print('--------------------')'''
-
-take_data_from_json()

@@ -32,14 +32,16 @@ def take_filename_from_data():
     return os.listdir()[0]
 
 
-def make_list_dict_by_task(list_dict):
-    """Принимает на вход список словарей, возвращает список словарей по форме указанной в ТЗ"""
+def make_list_dict_by_task(list_dict, first_category, second_category):
+    """Принимает на вход список словарей, и названия двух категорий,
+    которые будут слуужить ключами для новых словарей, список которых вернёт функция,
+    чтобы вывод соответствовал заданному в ТЗ"""
     result_list = []
     for item in list_dict:
         result_dict = {}
         for k,v in item.items():
-            result_dict["category"] = k
-            result_dict["amount"] = v
+            result_dict[first_category] = k
+            result_dict[second_category] = v
         result_list.append(result_dict)
     return result_list
 
