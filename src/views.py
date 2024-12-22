@@ -1,11 +1,13 @@
 import json
 from pathlib import Path
-
-import pandas as pd
-from src.utill_web import make_interval_dates, make_list_dict_by_task
-from src.setting import BASE_DIR
 import datetime
 import collections
+import pandas as pd
+
+from src.utill_web import make_interval_dates, make_list_dict_by_task, take_filename_from_data
+from src.setting import BASE_DIR
+from src.api_utils import get_exchange, get_stock_prices
+
 
 def get_data_from_exel(filename, type_of_operation, start_data, diap_data):
     '''Функция получает на вход имя файла и тип операции 0 - если нужна информация о расходах, 1 - если нужна информация о доходах'''
@@ -68,11 +70,27 @@ def get_data_from_exel(filename, type_of_operation, start_data, diap_data):
 
     return return_list, total_summ
 
+
 def take_data_from_json(filename = Path(BASE_DIR,'user_settings.json')):
     '''Получает данные из json файла'''
+
     with open(filename,'r') as f:
         my_data = json.load(f)
-    return my_data
+    return my_data['user_currencies'], my_data['user_stocks']
+
+
+def make_list_dict_from_json_data_currencies(list):
+    '''Получает на вход список валют, возвращает список словарей с парами ваалюта:курс'''
+
+    return [{x:get_exchange(x)['exchange_rate']} for x in list]
+
+
+def make_list_dict_from_json_data_stocks(list):
+    '''Получает на вход список названий акций, возвращает список словарей с парами акция:цена'''
+
+    return [{x:get_stock_prices(x)['price']} for x in list]
+
+
 
 
 '''

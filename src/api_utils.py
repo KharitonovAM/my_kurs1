@@ -28,6 +28,7 @@ def get_stock_prices(stock):
        return f'Error:, {response.status_code}, {response.text}'
 
 
+
 '''
 {'ticker': 'AAPL', 'name': 'Apple Inc.', 'price': 254.49, 'exchange': 'NASDAQ', 'updated': 1734728403, 'currency': 'USD'}
 {'ticker': 'AMZN', 'name': 'Amazon.com, Inc.', 'price': 224.92, 'exchange': 'NASDAQ', 'updated': 1734728403, 'currency': 'USD'}
