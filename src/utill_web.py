@@ -44,3 +44,7 @@ def make_list_dict_by_task(list_dict, first_category, second_category):
             result_dict[second_category] = v
         result_list.append(result_dict)
     return result_list
+
+
+k = make_list_dict_by_task([{1:'one'}, {2: 'two'}],'цифра','слово')
+print(k)
