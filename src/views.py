@@ -32,7 +32,7 @@ def get_data_from_exel(filename, type_of_operation, start_data, diap_data):
         dataframe_for_work = only_real_operations[only_real_operations['Сумма платежа'] > 0]
 
     #получаем общую сумму по операциям в рабочем датафрейме
-    total_summ = dataframe_for_work['Сумма платежа'].sum()
+    total_summ = round(dataframe_for_work['Сумма платежа'].sum(),0)
 
     #получаем список с перечнем категорий
     list_of_categories = list(set(dataframe_for_work['Категория']))
@@ -41,7 +41,7 @@ def get_data_from_exel(filename, type_of_operation, start_data, diap_data):
     return_list = []
     for item in list_of_categories:
         z = {}
-        z[item] = abs(float(dataframe_for_work[dataframe_for_work['Категория'] == item]['Сумма платежа'].sum()))
+        z[item] = round(abs(float(dataframe_for_work[dataframe_for_work['Категория'] == item]['Сумма платежа'].sum())),0)
         return_list.append(z)
 
     #сортируем список по убыванию суммы по категориям
@@ -63,7 +63,7 @@ def get_data_from_exel(filename, type_of_operation, start_data, diap_data):
 
         #Преобразовываем список с категориями, оставляя 7 категорий и остальное
         if len(return_list) >7:
-            summ_other = sum([list(x.values())[0] for x in return_list[7:]])
+            summ_other = round(sum([list(x.values())[0] for x in return_list[7:]]),0)
             return_list = return_list[:7]+[{'Остальное':summ_other}]
 
         return cash_list, return_list, total_summ
