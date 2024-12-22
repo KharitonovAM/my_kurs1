@@ -91,6 +91,49 @@ def make_list_dict_from_json_data_stocks(list):
     return [{x:get_stock_prices(x)['price']} for x in list]
 
 
+def events(start_data, date_range = 'M'):
+    #Получаем название файла из дата
+    exel_filename = take_filename_from_data()
+
+    #Получаем предварительные списки по доходам и расходам из файла эксель
+    cash_list, expenses_list, expenses_amount = get_data_from_exel(exel_filename, 0, start_data, date_range)
+    income_list, income_amount = get_data_from_exel(exel_filename, 1, start_data, date_range)
+
+    #получаем данные из json файла и перерабытываем их получая словари
+    currencies_list, stocks_list = take_data_from_json()
+    currencies_list_dict = make_list_dict_from_json_data_currencies(currencies_list)
+    stocks_list_dict = make_list_dict_from_json_data_stocks(stocks_list)
+
+    #Перерабатываем полученные данные в формат соответствующий заданию
+    expenses_list = make_list_dict_by_task(expenses_list, "category", "amount")
+    cash_list = make_list_dict_by_task(cash_list, "category", "amount")
+    income_list = make_list_dict_by_task(income_list, "category", "amount")
+    currencies_list_dict_by_task = make_list_dict_by_task(currencies_list_dict, "currency", "rate")
+    stocks_list_dict_by_task = make_list_dict_by_task(stocks_list_dict, "stock", "price")
+
+
+
+    #собираем вложенный словарь по расходам
+    expenses_dict = {}
+    expenses_dict["total_amount"] = expenses_amount
+    expenses_dict["main"] = expenses_list
+    expenses_dict["transfers_and_cash"] = cash_list
+
+    # собираем вложенный словарь по доходам
+    income_dict = {}
+    income_dict["total_amount"] = income_amount
+    income_dict["main"] = income_list
+
+    #собираем словарь который будет выводиться
+    return_dict = {}
+    return_dict["expenses"] = expenses_dict
+    return_dict["income"] = income_dict
+    return_dict["currency_rates"] = currencies_list_dict_by_task
+    return_dict["stock_prices"] = stocks_list_dict_by_task
+
+    json_data = json.dumps(return_dict)
+    print(json_data)
+
 
 
 '''
