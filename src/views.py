@@ -131,3 +131,6 @@ def events(start_data, date_range = 'M'):
 
     json_data = json.dumps(return_dict, ensure_ascii = False, indent = 4)
     print(json_data)
+
+
+take_data_from_json()
