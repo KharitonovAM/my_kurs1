@@ -1,6 +1,9 @@
 import pytest
 import os
 import json
+from unittest.mock import patch
+import src.views
+from src.api_utils import get_exchange
 from src.views import (events,
                        get_data_from_exel,
                        take_data_from_json,
@@ -20,5 +23,26 @@ def test_mistake_take_data_from_json():
     '''Проверяем возбуждение ошибки в случае неверного наименвоание файла'''
     with pytest.raises(TypeError):
         assert test_take_data_from_json('no_such_file.txt')
+
+def test_events_wrong_data():
+    '''Тестируем что при неправильных входных данных возникает ошибка'''
+    with pytest.raises(ValueError):
+        events('11.10.24 17:10:10')
+
+
+@patch('src.views.make_list_dict_from_json_data_stocks')
+@patch('src.views.make_list_dict_from_json_data_currencies')
+def test_events(stocks_mock, currencies_mock):
+    stocks_mock.return_value = [{'FFP': 110}, {'RTR': 57}]
+    currencies_mock.return_value = [{'eur': 110}, {'usd': 107}]
+    assert events('2019-10-10 15:17:31') == None
+
+
+
+
+
+
+
+
 
 
