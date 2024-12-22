@@ -32,6 +32,7 @@ def take_filename_from_data():
     return os.listdir()[0]
 
 
-
+def make_list_dict_by_task(list_dict):
+    """Принимает на фхо список словарей, возвращает список словарей по форме указанной в ТЗ"""
 
 

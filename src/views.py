@@ -54,9 +54,16 @@ def get_data_from_exel(filename, type_of_operation, start_data, diap_data):
 
         #сртируем список наличных по убыванию
         cash_list = sorted(cash_list, key=lambda x: list(x.values())[0], reverse=True)
-        # print(cash_list)
-        # print(return_list)
-        return cash_list, return_list
 
-    # print(return_list)
-    return return_list
+        #Преобразовываем список с категориями, оставляя 7 категорий и остальное
+        if len(return_list) >7:
+            summ_other = sum([list(x.values())[0] for x in return_list[7:]])
+            return_list = return_list[:7]+[{'Остальное':summ_other}]
+
+        return cash_list, return_list, total_summ
+
+    return return_list, total_summ
+
+a,b,c = get_data_from_exel('G:\Учеба скай про\курсовые работы\Курсовая работа 1\pythonProject\data\operations.xlsx', 0, '2019-02-15 10:01:15','W')
+d, e = get_data_from_exel('G:\Учеба скай про\курсовые работы\Курсовая работа 1\pythonProject\data\operations.xlsx', 1, '2020-10-29 11:10:45','Y')
+
