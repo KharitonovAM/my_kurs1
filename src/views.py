@@ -2,6 +2,7 @@ import json
 
 import pandas as pd
 from src.utill_web import make_interval_dates, make_list_dict_by_task
+from src.setting import BASE_DIR
 import datetime
 import collections
 
@@ -66,7 +67,7 @@ def get_data_from_exel(filename, type_of_operation, start_data, diap_data):
 
     return return_list, total_summ
 
-def take_data_from_json(filename = '../user_settings.json'):
+def take_data_from_json(filename = 'user_settings.json'):
     '''Получает данные из json файла'''
     with open(filename,'r') as f:
         my_data = json.load(f)
