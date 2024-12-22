@@ -1,5 +1,7 @@
+import json
+
 import pandas as pd
-from src.utill_web import make_interval_dates
+from src.utill_web import make_interval_dates, make_list_dict_by_task
 import datetime
 import collections
 
@@ -64,6 +66,26 @@ def get_data_from_exel(filename, type_of_operation, start_data, diap_data):
 
     return return_list, total_summ
 
+def take_data_from_json(filename = '../user_settings.json'):
+    '''Получает данные из json файла'''
+    with open(filename,'r') as f:
+        my_data = json.load(f)
+    return my_data
+
+
+'''
 a,b,c = get_data_from_exel('G:\Учеба скай про\курсовые работы\Курсовая работа 1\pythonProject\data\operations.xlsx', 0, '2019-02-15 10:01:15','W')
 d, e = get_data_from_exel('G:\Учеба скай про\курсовые работы\Курсовая работа 1\pythonProject\data\operations.xlsx', 1, '2020-10-29 11:10:45','Y')
 
+a = make_list_dict_by_task(a)
+b = make_list_dict_by_task(b)
+d = make_list_dict_by_task(d)
+print('--------------------')
+print(a)
+print('--------------------')
+print(b)
+print('--------------------')
+print(d)
+print('--------------------')'''
+
+take_data_from_json()
