@@ -33,6 +33,15 @@ def take_filename_from_data():
 
 
 def make_list_dict_by_task(list_dict):
-    """Принимает на фхо список словарей, возвращает список словарей по форме указанной в ТЗ"""
+    """Принимает на вход список словарей, возвращает список словарей по форме указанной в ТЗ"""
+    result_list = []
+    for item in list_dict:
+        result_dict = {}
+        for k,v in item.items():
+            result_dict["category"] = k
+            result_dict["amount"] = v
+        result_list.append(result_dict)
+    return result_list
+
 
 
