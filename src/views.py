@@ -131,7 +131,7 @@ def events(start_data, date_range = 'M'):
     return_dict["currency_rates"] = currencies_list_dict_by_task
     return_dict["stock_prices"] = stocks_list_dict_by_task
 
-    json_data = json.dumps(return_dict)
+    json_data = json.dumps(return_dict, ensure_ascii = False, indent = 4)
     print(json_data)
 
 
