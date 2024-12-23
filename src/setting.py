@@ -1,5 +1,4 @@
 from pathlib import Path
-import logging
 
 
 BASE_DIR = Path(__file__).parent.parent
