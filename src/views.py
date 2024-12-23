@@ -1,5 +1,3 @@
-import collections
-import datetime
 import json
 import logging
 from pathlib import Path
@@ -28,7 +26,8 @@ logging_events = logging.getLogger("events")
 
 
 def get_data_from_exel(filename, type_of_operation, start_data, diap_data):
-    """Функция получает на вход имя файла и тип операции 0 - если нужна информация о расходах, 1 - если нужна информация о доходах"""
+    """Функция получает на вход имя файла и тип операции 0 -
+    если нужна информация о расходах, 1 - если нужна информация о доходах"""
 
     logging_get_data_from_exel.info("Старт работы")
     # Формируем предварительно рабочий датафрейм (без учета временного интервала)
@@ -65,7 +64,7 @@ def get_data_from_exel(filename, type_of_operation, start_data, diap_data):
         dataframe_for_work = only_real_operations[
             only_real_operations["Сумма платежа"] > 0
         ]
-    logging_get_data_from_exel.info(f"Сформировали датафрейм доходы/расходы")
+    logging_get_data_from_exel.info("Сформировали датафрейм доходы/расходы")
 
     # получаем общую сумму по операциям в рабочем датафрейме
     total_summ = round(dataframe_for_work["Сумма платежа"].sum(), 0)
@@ -92,7 +91,7 @@ def get_data_from_exel(filename, type_of_operation, start_data, diap_data):
     # сортируем список по убыванию суммы по категориям
     return_list = sorted(return_list, key=lambda x: list(x.values())[0], reverse=True)
     logging_get_data_from_exel.info(
-        f"Сформировали список категорий отфильтрованный по убыванию"
+        "Сформировали список категорий отфильтрованный по убыванию"
     )
 
     # формируем список с данными по расходу наличных выводя их в отдельный список
@@ -109,7 +108,7 @@ def get_data_from_exel(filename, type_of_operation, start_data, diap_data):
         # сртируем список наличных по убыванию
         cash_list = sorted(cash_list, key=lambda x: list(x.values())[0], reverse=True)
         logging_get_data_from_exel.info(
-            f"Сформировали список наличных отфильтрованный по убыванию"
+            "Сформировали список наличных отфильтрованный по убыванию"
         )
 
         # Преобразовываем список с категориями, оставляя 7 категорий и остальное
@@ -117,12 +116,12 @@ def get_data_from_exel(filename, type_of_operation, start_data, diap_data):
             summ_other = round(sum([list(x.values())[0] for x in return_list[7:]]), 0)
             return_list = return_list[:7] + [{"Остальное": summ_other}]
             logging_get_data_from_exel.info(
-                f"Получили сумму категорий которые попадуьт в остальное"
+                "Получили сумму категорий которые попадуьт в остальное"
             )
 
-        logging_get_data_from_exel.info(f"Программа успешно отработала")
+        logging_get_data_from_exel.info("Программа успешно отработала")
         return cash_list, return_list, total_summ
-    logging_get_data_from_exel.info(f"Программа успешно отработала")
+    logging_get_data_from_exel.info("Программа успешно отработала")
     return return_list, total_summ
 
 
@@ -164,13 +163,13 @@ def events(start_data, date_range="M"):
     income_list, income_amount = get_data_from_exel(
         exel_filename, 1, start_data, date_range
     )
-    logging_events.info(f"Считали данные из эксель-файла")
+    logging_events.info("Считали данные из эксель-файла")
 
     # получаем данные из json файла и перерабытываем их получая словари
     currencies_list, stocks_list = take_data_from_json()
     currencies_list_dict = make_list_dict_from_json_data_currencies(currencies_list)
     stocks_list_dict = make_list_dict_from_json_data_stocks(stocks_list)
-    logging_events.info(f"Считали данные из json")
+    logging_events.info("Считали данные из json")
 
     # Перерабатываем полученные данные в формат соответствующий заданию
     expenses_list = make_list_dict_by_task(expenses_list, "category", "amount")
@@ -200,8 +199,8 @@ def events(start_data, date_range="M"):
     return_dict["income"] = income_dict
     return_dict["currency_rates"] = currencies_list_dict_by_task
     return_dict["stock_prices"] = stocks_list_dict_by_task
-    logging_events.info(f"Сформирован слвоарь для заливны в json")
+    logging_events.info("Сформирован слвоарь для заливны в json")
 
     json_data = json.dumps(return_dict, ensure_ascii=False, indent=4)
-    logging_events.info(f"Функция отработала корректно")
+    logging_events.info("Функция отработала корректно")
     print(json_data)

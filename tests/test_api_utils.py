@@ -1,8 +1,6 @@
 from unittest.mock import patch
 
-import pytest
 
-import src.api_utils
 from src.api_utils import get_exchange, get_stock_prices
 
 
@@ -47,10 +45,7 @@ def test_get_exchange_bad_data(get_mock):
     """Тестируем функционал по возвращению ошибки"""
     get_mock.return_value.status_code = 400
     get_mock.return_value.text = "This currency pair is for premium subscribers only"
-    assert (
-        get_exchange("rere")
-        == "Error:, 400, This currency pair is for premium subscribers only"
-    )
+    assert get_exchange("rere") == "Error:, 400, This currency pair is for premium subscribers only"
 
 
 @patch("requests.get")
