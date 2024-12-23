@@ -2,6 +2,7 @@ import os
 import requests
 from dotenv import load_dotenv
 
+
 def get_exchange(currency):
     ''' Функция возвращает курс валюты которую подали в функцию относительно British Pound'''
     load_dotenv()
