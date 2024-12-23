@@ -1,9 +1,11 @@
-import pandas as pd
 import datetime
-from typing import Optional
-from src.decoretors import report_log
-from logs.logs_settint import mylogconfig
 import logging
+from typing import Optional
+
+import pandas as pd
+
+from logs.logs_settint import mylogconfig
+from src.decoretors import report_log
 
 # импортируем настройки логирования
 logging.basicConfig = mylogconfig

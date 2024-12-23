@@ -1,16 +1,15 @@
-import pytest
-import os
 import json
+import os
 from unittest.mock import patch
+
+import pytest
+
 import src.views
 from src.api_utils import get_exchange
-from src.views import (
-    events,
-    get_data_from_exel,
-    take_data_from_json,
-    make_list_dict_from_json_data_currencies,
-    make_list_dict_from_json_data_stocks,
-)
+from src.views import (events, get_data_from_exel,
+                       make_list_dict_from_json_data_currencies,
+                       make_list_dict_from_json_data_stocks,
+                       take_data_from_json)
 
 
 def test_take_data_from_json():

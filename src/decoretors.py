@@ -1,6 +1,7 @@
-from src.setting import Reports_log
-from logs.logs_settint import mylogconfig
 import logging
+
+from logs.logs_settint import mylogconfig
+from src.setting import Reports_log
 
 # импортируем настройки логирования
 logging.basicConfig = mylogconfig

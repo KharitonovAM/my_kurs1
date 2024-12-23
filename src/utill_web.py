@@ -1,8 +1,10 @@
 import datetime
-import os
-import pandas as pd
-from logs.logs_settint import mylogconfig
 import logging
+import os
+
+import pandas as pd
+
+from logs.logs_settint import mylogconfig
 
 # импортируем настройки логирования
 logging.basicConfig = mylogconfig

@@ -1,6 +1,8 @@
-import pytest
-import pandas as pd
 import datetime
+
+import pandas as pd
+import pytest
+
 from src.reports import spending_by_category, take_3_month_before
 
 

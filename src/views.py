@@ -1,20 +1,16 @@
-import json
-from pathlib import Path
-import datetime
 import collections
-import pandas as pd
-from logs.logs_settint import mylogconfig
+import datetime
+import json
 import logging
+from pathlib import Path
 
+import pandas as pd
 
-from src.utill_web import (
-    make_interval_dates,
-    make_list_dict_by_task,
-    take_filename_from_data,
-)
-from src.setting import BASE_DIR
+from logs.logs_settint import mylogconfig
 from src.api_utils import get_exchange, get_stock_prices
-
+from src.setting import BASE_DIR
+from src.utill_web import (make_interval_dates, make_list_dict_by_task,
+                           take_filename_from_data)
 
 # импортируем настройки логирования
 logging.basicConfig = mylogconfig

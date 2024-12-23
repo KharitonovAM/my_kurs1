@@ -1,10 +1,11 @@
 import json
-
-from src.utill_web import take_filename_from_data
-import pandas as pd
-import re
-from logs.logs_settint import mylogconfig
 import logging
+import re
+
+import pandas as pd
+
+from logs.logs_settint import mylogconfig
+from src.utill_web import take_filename_from_data
 
 # импортируем настройки логирования
 logging.basicConfig = mylogconfig

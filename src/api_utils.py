@@ -1,8 +1,10 @@
+import logging
 import os
+
 import requests
 from dotenv import load_dotenv
+
 from logs.logs_settint import mylogconfig
-import logging
 
 # импортируем настройки логирования
 logging.basicConfig = mylogconfig

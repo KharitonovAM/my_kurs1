@@ -1,9 +1,9 @@
-import pytest
 from unittest.mock import patch
 
+import pytest
+
 import src.api_utils
-from src.api_utils import get_exchange
-from src.api_utils import get_stock_prices
+from src.api_utils import get_exchange, get_stock_prices
 
 
 @patch("requests.get")
