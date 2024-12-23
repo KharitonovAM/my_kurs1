@@ -1,6 +1,7 @@
 import pandas as pd
 import datetime
 from typing import Optional
+from src.decoretors import report_log
 
 def take_3_month_before(second_data):
     """Принимает на вход дату и возвращает дату за три месяца до"""
@@ -10,6 +11,7 @@ def take_3_month_before(second_data):
         start_date = second_data.replace(year=(second_data.year -1), month= (12 - (3-second_data.month)))
     return start_date
 
+@report_log
 def spending_by_category(transactions: pd.DataFrame,
                          category: str,
                          date: Optional[str] = None) -> pd.DataFrame:
