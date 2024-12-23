@@ -43,6 +43,6 @@ def get_stock_prices(stock):
         return response.json()
     else:
         logging_get_stock_prices.info(f'Error:, {response.status_code}, {response.text}')
-       return f'Error:, {response.status_code}, {response.text}'
+        return f'Error:, {response.status_code}, {response.text}'
 
 
