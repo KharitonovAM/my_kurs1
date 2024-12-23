@@ -1,8 +1,10 @@
 import pytest
 
+
 @pytest.fixture
 def spending_without_data():
     return 0.0
+
 
 @pytest.fixture
 def spending_with_data():
@@ -11,11 +13,12 @@ def spending_with_data():
 
 @pytest.fixture
 def list_of_data_result():
-    return ['2012-11-01 23:54:16','M', '2012-11-01 00:00:00']
+    return ["2012-11-01 23:54:16", "M", "2012-11-01 00:00:00"]
+
 
 @pytest.fixture
 def return_dict():
-    return '''   "expenses": {
+    return """   "expenses": {
         "total_amount": -91584.76000000001,
         "main": [
             {
@@ -104,12 +107,12 @@ def return_dict():
         }
     ]
 }
-'''
+"""
 
 
 @pytest.fixture
 def json_phone_rezult():
-    return '''{
+    return """{
     "Дата операции": {
         "259": "18.11.2021 21:15:27",
         "260": "18.11.2021 21:15:27",
@@ -515,4 +518,4 @@ def json_phone_rezult():
         "5975": 150.0,
         "6309": 300.0
     }
-}'''
+}"""
