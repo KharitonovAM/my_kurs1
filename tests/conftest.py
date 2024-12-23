@@ -1,6 +1,15 @@
 import pytest
 
 @pytest.fixture
+def spending_without_data():
+    return 0.0
+
+@pytest.fixture
+def spending_with_data():
+    return -35049.92
+
+
+@pytest.fixture
 def list_of_data_result():
     return ['2012-11-01 23:54:16','M', '2012-11-01 00:00:00']
 

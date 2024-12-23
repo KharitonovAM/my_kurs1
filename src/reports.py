@@ -7,7 +7,7 @@ def take_3_month_before(second_data):
     if second_data.month > 3:
         start_date = second_data.replace(month=second_data.month-3)
     else:
-        start_date = second_data.replace(month= (12 - (3-second_data.month)))
+        start_date = second_data.replace(year=(second_data.year -1), month= (12 - (3-second_data.month)))
     return start_date
 
 def spending_by_category(transactions: pd.DataFrame,
