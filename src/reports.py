@@ -2,7 +2,6 @@ import pandas as pd
 import datetime
 from typing import Optional
 from src.decoretors import report_log
-from src.setting import Project_Log
 from logs.logs_settint import mylogconfig
 import logging
 
@@ -55,3 +54,5 @@ def spending_by_category(transactions: pd.DataFrame,
     working_dataframe = working_dataframe[working_dataframe['Категория'] == category]
     logging_spending_by_category.info('Датафрейм сформирован, программа завершается')
     return working_dataframe['Сумма операции'].sum()
+
+print(take_3_month_before(datetime.datetime(2024, 1, 1, 0, 0, 0)))

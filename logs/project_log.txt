@@ -1,13 +1,3 @@
-
-2024-12-23 18:26:44,914 - WARNING- logging_take_3_month_before - Запуск функции
-2024-12-23 18:26:44,914 - WARNING- logging_take_3_month_before - Определили что индекс месяца менее 4
-2024-12-23 18:26:44,914 - WARNING- logging_take_3_month_before - Функция усппешно завершила свою работу
-2024-12-23 18:28:32,569 - WARNING- logging_take_3_month_before - Запуск функции
-2024-12-23 18:28:32,569 - WARNING- logging_take_3_month_before - Определили что индекс месяца менее 4
-2024-12-23 18:28:32,570 - WARNING- logging_take_3_month_before - Функция усппешно завершила свою работу
-2024-12-23 18:36:39,067 - INFO- logging_take_3_month_before - Запуск функции
-2024-12-23 18:36:39,067 - INFO- logging_take_3_month_before - Определили что индекс месяца менее 4
-2024-12-23 18:36:39,067 - INFO- logging_take_3_month_before - Функция усппешно завершила свою работу
-2024-12-23 18:36:47,929 - INFO- logging_take_3_month_before - Запуск функции
-2024-12-23 18:36:47,929 - INFO- logging_take_3_month_before - Определили что индекс месяца менее 4
-2024-12-23 18:36:47,929 - INFO- logging_take_3_month_before - Функция усппешно завершила свою работу
+2024-12-23 18:45:31,098 - INFO- logging_take_3_month_before - Запуск функции
+2024-12-23 18:45:31,099 - INFO- logging_take_3_month_before - Определили что индекс месяца менее 4
+2024-12-23 18:45:31,099 - INFO- logging_take_3_month_before - Функция усппешно завершила свою работу
