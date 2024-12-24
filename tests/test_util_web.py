@@ -1,7 +1,8 @@
 import pytest
+from freezegun import freeze_time
 
 from src.utill_web import (make_interval_dates, make_list_dict_by_task,
-                           take_filename_from_data)
+                           take_filename_from_data, web_meeting)
 
 
 def test_take_filename_from_data():
@@ -33,3 +34,22 @@ def test_make_interval_dates(start_data, interval, result_data):
 def test_make_interval_dates_value_error():
     with pytest.raises(ValueError):
         assert make_interval_dates("2012-11-01 23:54:16", "N")
+
+@freeze_time('2012-11-01 08:08:00')
+def test_web_meeting_morning():
+    assert web_meeting() == 'Доброе утро'
+
+
+@freeze_time('2012-11-01 12:08:00')
+def test_web_meeting_day():
+    assert web_meeting() == 'Добрый день'
+
+
+@freeze_time('2012-11-01 19:08:00')
+def test_web_meeting_day():
+    assert web_meeting() == 'Добрый вечер'
+
+
+@freeze_time('2012-11-01 23:08:00')
+def test_web_meeting_day():
+    assert web_meeting() == 'Доброй ночи'
