@@ -62,3 +62,25 @@ def make_list_dict_by_task(list_dict, first_category, second_category):
         result_list.append(result_dict)
     logging_make_list_dict_by_task.info("Отработала штатно")
     return result_list
+
+
+
+def web_meeting():
+    '''Генерирует приветствие в зависимости от текущего времени суток: утро, день, вечер '''
+    logging_web_meeting.info('Старт работы программы')
+    #Получаем текущее время
+    the_time = datetime.datetime.now()
+    logging_web_meeting.info(f'На старте программы время {the_time}')
+    #В зависимости от значения часа возвращаем приветствие
+    if 6 <= the_time.hour and the_time.hour <= 10:
+        logging_web_meeting.info('Доброе утро')
+        return 'Доброе утро'
+    elif the_time.hour <= 17:
+        logging_web_meeting.info('Добрый день')
+        return 'Добрый день'
+    elif the_time.hour <= 21:
+        logging_web_meeting.info('Добрый вечер')
+        return 'Добрый вечер'
+    else:
+        logging_web_meeting.info('Доброй ночи')
+        return 'Доброй ночи'
