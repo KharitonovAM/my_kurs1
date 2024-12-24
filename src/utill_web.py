@@ -11,6 +11,7 @@ logging.basicConfig = mylogconfig
 logging_make_interval_dates = logging.getLogger("make_interval_dates")
 logging_take_filename_from_data = logging.getLogger("take_filename_from_data")
 logging_make_list_dict_by_task = logging.getLogger("make_list_dict_by_task")
+logging_web_meeting = logging.getLogger('logging_web_meeting')
 
 
 def make_interval_dates(start_data: str, diap_data: str) -> str:
