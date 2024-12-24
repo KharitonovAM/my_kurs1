@@ -84,3 +84,12 @@ def web_meeting():
     else:
         logging_web_meeting.info('Доброй ночи')
         return 'Доброй ночи'
+
+
+def take_list_with_for_last_number_cards(datafreim, name_column):
+    '''Получает на вход датафрейм и название столбца с данными по карте,
+    возвращает список, содержащий 4 последние цифры в номере карты'''
+
+    set_of_card = set(datafreim.loc[name_column].tolist())
+    return [x[:4] for x in set_of_card if len(x) > 5]
+
