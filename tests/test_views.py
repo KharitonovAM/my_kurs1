@@ -35,3 +35,5 @@ def test_events(stocks_mock, currencies_mock):
     stocks_mock.return_value = [{"FFP": 110}, {"RTR": 57}]
     currencies_mock.return_value = [{"eur": 110}, {"usd": 107}]
     assert events("2019-10-10 15:17:31") == None
+
+

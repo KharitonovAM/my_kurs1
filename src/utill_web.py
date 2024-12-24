@@ -65,7 +65,6 @@ def make_list_dict_by_task(list_dict, first_category, second_category):
     return result_list
 
 
-
 def web_meeting():
     '''Генерирует приветствие в зависимости от текущего времени суток: утро, день, вечер '''
     logging_web_meeting.info('Старт работы программы')

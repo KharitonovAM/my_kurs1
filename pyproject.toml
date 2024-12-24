@@ -23,6 +23,7 @@ isort = "^5.13.2"
 
 [tool.poetry.group.dev.dependencies]
 pytest-cov = "^6.0.0"
+freezegun = "^1.5.1"
 
 [build-system]
 requires = ["poetry-core"]
