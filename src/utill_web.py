@@ -1,6 +1,7 @@
 import datetime
 import logging
 import os
+import pandas as pd
 
 from logs.logs_settint import mylogconfig
 
@@ -90,6 +91,7 @@ def take_list_with_for_last_number_cards(datafreim, name_column):
     '''Получает на вход датафрейм и название столбца с данными по карте,
     возвращает список, содержащий 4 последние цифры в номере карты'''
 
-    set_of_card = set(datafreim.loc[name_column].tolist())
-    return [x[:4] for x in set_of_card if len(x) > 5]
+    set_of_card = set(datafreim.loc[:,name_column].tolist())
+    print(set_of_card)
+    return sorted([x[-4:] for x in set_of_card if len(x) >= 5])
 

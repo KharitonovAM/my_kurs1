@@ -1,4 +1,5 @@
 import pytest
+import pandas as pd
 
 
 @pytest.fixture
@@ -519,3 +520,11 @@ def json_phone_rezult():
         "6309": 300.0
     }
 }"""
+
+@pytest.fixture
+def my_dataset():
+    my_dataset = {
+    'Номер карты': ['*4321', ' ', '*2251','*4321'],
+    'Сумма платежа': [28, 34, 29, 121],
+    }
+    return pd.DataFrame(my_dataset)

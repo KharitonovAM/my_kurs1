@@ -2,7 +2,7 @@ import pytest
 from freezegun import freeze_time
 
 from src.utill_web import (make_interval_dates, make_list_dict_by_task,
-                           take_filename_from_data, web_meeting)
+                           take_filename_from_data, web_meeting, take_list_with_for_last_number_cards)
 
 
 def test_take_filename_from_data():
@@ -46,10 +46,18 @@ def test_web_meeting_day():
 
 
 @freeze_time('2012-11-01 19:08:00')
-def test_web_meeting_day():
+def test_web_meeting_evening():
     assert web_meeting() == 'Добрый вечер'
 
 
 @freeze_time('2012-11-01 23:08:00')
-def test_web_meeting_day():
+def test_web_meeting_night():
     assert web_meeting() == 'Доброй ночи'
+
+
+def test_take_list_with_for_last_number_cards(my_dataset):
+    assert take_list_with_for_last_number_cards(my_dataset, 'Номер карты') == ['2251', '4321']
+
+def test_take_list_with_for_last_number_cards_with_mist():
+    with pytest.raises(TypeError):
+        assert take_list_with_for_last_number_cards()
