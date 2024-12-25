@@ -105,7 +105,7 @@ def take_list_with_for_last_number_cards(datafreim, name_column):
         logging_take_list_with_for_last_number_cards.info('Старт программы')
         set_of_card = set(datafreim.loc[:,name_column].tolist())
         logging_take_list_with_for_last_number_cards.info('функция отработала штатно')
-        return sorted([x[-4:] for x in set_of_card if len(x) >= 5])
+        return sorted([str(x)[-4:] for x in set_of_card if len(str(x)) >= 5])
     except Exception as e:
         print('Check log-file, something is wrange')
         logging_take_list_with_for_last_number_cards.error(f'Возникла ошибка {e}')

@@ -1,6 +1,8 @@
+import datetime
 import json
 import logging
 from pathlib import Path
+import datetime
 
 import pandas as pd
 
@@ -245,24 +247,87 @@ def main_page(input_data):
     - Стоимость акций из S&P500
     '''
     logging_main_page.info(f"Запуск программы с параметрами {input_data}")
+
     # Получаем название файла из дата
     exel_filename = take_filename_from_data()
     logging_main_page.info(f"Получили название файла с данными {exel_filename}")
     greeting = web_meeting()
     logging_main_page.info(f"Сформировали приветствие в соответствии с текущим временем {greeting}")
+
     # Формируем предварительно рабочий датафрейм (без учета временного интервала)
     exel_dataframe = pd.read_excel(exel_filename)
     only_real_operations = exel_dataframe[exel_dataframe.loc[:, "Статус"] == "OK"]
-    only_real_operations.loc["Дата операции"] = pd.to_datetime(
-        only_real_operations.loc[:, "Дата операции"], format="%d.%m.%Y %H:%M:%S"
-    )
-    logging_main_page.info(
-        f"Сформировали датафрейм из информации файла {exel_filename} согласно ТЗ"
-    )
+    only_real_operations["Дата операции"] = pd.to_datetime(
+        only_real_operations["Дата операции"], format="%d.%m.%Y %H:%M:%S")
 
-    # получаем интервал дат, в рамках которых будет формировать рабочий датафрейм:
+    #Получием дататейм с учётом какое начальное и конечное значение интерваала
     start_data_interval = make_interval_dates(input_data, 'M')
+    end_data_interval = datetime.datetime.strptime(input_data, "%Y-%m-%d %H:%M:%S")
+    logging_main_page.info(f"Определил интервал с {start_data_interval} по {end_data_interval}")
+    work_dataframe = only_real_operations[(only_real_operations.loc[:, 'Дата операции'] <= end_data_interval) & (
+                only_real_operations.loc[:, 'Дата операции'] >= start_data_interval)]
+    logging_main_page.info("Сформировали датафрейм с учетом временных ограничений")
+
+    #Добавляем два столбца абсолютное значение и кэшбек
+    work_dataframe["Абсолютная сумма платежа"] = work_dataframe.apply(lambda row: abs(row['Сумма платежа']), axis=1)
+    work_dataframe["Кэшбэк расчет"] = work_dataframe.apply(lambda row: round(row['Сумма платежа']/100, 2), axis=1)
+    logging_main_page.info("Добавил два столбца: абсолютное значение и кэшбек")
+
+    #Получчаем список карт, которые есть в датафрейме и список словарей [{номер: карты: сумма операций по ней}]
+    cards_list = take_list_with_for_last_number_cards(work_dataframe, 'Номер карты')
+    cards_information = [{x : abs(round(float(work_dataframe[(work_dataframe['Номер карты'] == '*'+x) & (work_dataframe['Сумма операции'] < 0)]['Сумма операции'].sum()),2))} for x in cards_list]
+    logging_main_page.info("Cформирован список словарей [{номер: карты: сумма операций по ней}")
+
+    #сформировали список словарей с данными по картам в соответствии с ТЗ
+    list_cards_dict = make_list_dict_by_task(cards_information, "last_digits", "total_spent")
+    for i in list_cards_dict:
+        formatted_num = "{:.2f}".format(i["total_spent"]/100)
+        i["cashback"] = formatted_num
+    logging_main_page.info("сформировали список словарей с данными по картам в соответствии с ТЗ")
+
+    #Получаем топ пять операций в датафрейме (сортируем по уменьшению по абсолюту и возьмем пять первых)
+    work_dataframe = work_dataframe.sort_values(['Абсолютная сумма платежа'], ascending=False)
+    list_top_transactions = []
+    for i in range(5):
+        formatted_num = "{:.2f}".format(abs(float(work_dataframe.iloc[i]['Абсолютная сумма платежа'])))
+        list_top_transactions.append({"date": work_dataframe.iloc[i]['Дата платежа'],
+                                      "amount": formatted_num,
+                                      "category": work_dataframe.iloc[i]['Категория'],
+                                      "description": (work_dataframe.iloc[i]['Описание'])})
+    logging_main_page.info("Cформирован список словарей c информацией о топ5 операций")
+
+    # получаем данные из json файла и перерабытываем их получая словари
+    currencies_list, stocks_list = take_data_from_json()
+    currencies_list_dict = make_list_dict_from_json_data_currencies(currencies_list)
+    stocks_list_dict = make_list_dict_from_json_data_stocks(stocks_list)
+    logging_main_page.info("Считали данные из json получчив необходимую информацию по API")
+
+    # Перерабатываем полученные из jsonфайла  данные в формат соответствующий заданию
+    currencies_list_dict_by_task = make_list_dict_by_task(
+        currencies_list_dict, "currency", "rate"
+    )
+    stocks_list_dict_by_task = make_list_dict_by_task(
+        stocks_list_dict, "stock", "price"
+    )
+    logging_main_page.info("Сформировали необходимые словари на базе json-файлов")
+
+    #собираем словарь в соответствии с ТЗ
+    return_dict = {}
+    return_dict["greeting"] = greeting
+    return_dict["cards"] = list_cards_dict
+    return_dict["top_transactions"] = list_top_transactions
+    return_dict["currency_rates"] =currencies_list_dict_by_task
+    return_dict["stock_prices"] = stocks_list_dict_by_task
+    logging_main_page.info("Сформировали итоговый словарь в соответствии с ТЗ")
+
+    #Сформировали json_data для вывода информации
+    json_data = json.dumps(return_dict, ensure_ascii=False, indent=4)
+    logging_main_page.info("Функция отработала корректно")
+    print(json_data)
 
 
 
-#main_page('2021-12-01 10:10:27')
+
+
+
+
