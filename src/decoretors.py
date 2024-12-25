@@ -12,6 +12,7 @@ logging_report_log = logging.getLogger("decorator_report_log")
 
 def report_log(func):
     """Деоратор который созраняет результат работы функции в файл"""
+
     def wrapper(*args, **kwargs):
         logging_report_log.info("Начало выполнение декоратора")
         rezult = func(*args, **kwargs)

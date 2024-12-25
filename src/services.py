@@ -28,17 +28,13 @@ def search_phone_number():
         pattern = re.compile(r"\+\d \d{3} \d{3}-\d{2}-\d{2}")
         # Формируем датафрейм из строк в которых в описании есть совпадение по паттерну
         my_database = exel_dataframe[exel_dataframe["Описание"].str.contains(pattern)]
-        logging_search_phone_number.info(
-            "Сформиировал датафрейм отфильрованные по номерамм телефона"
-        )
+        logging_search_phone_number.info("Сформиировал датафрейм отфильрованные по номерамм телефона")
         # Сохраняем датабейс в формате словаря
         dict_file_with_phone_numbers = my_database.to_dict()
         # Переводим словарь json
-        json_file_with_phone_numbers = json.dumps(
-            dict_file_with_phone_numbers, indent=4, ensure_ascii=False
-        )
+        json_file_with_phone_numbers = json.dumps(dict_file_with_phone_numbers, indent=4, ensure_ascii=False)
         logging_search_phone_number.info("Функция отработала. сформирован json")
         return json_file_with_phone_numbers
     except Exception as e:
-        print(f'Возникла ошибка {e} проверьет лог-файл')
-        logging_search_phone_number.error(f'Возникла ошибка {e} проверьет лог-файл')
+        print(f"Возникла ошибка {e} проверьет лог-файл")
+        logging_search_phone_number.error(f"Возникла ошибка {e} проверьет лог-файл")

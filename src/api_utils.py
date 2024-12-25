@@ -21,9 +21,7 @@ def get_exchange(currency):
     logging_get_exchange.info("Получили данные по API из дотенв")
     my_api = os.getenv("ApiKey_ninjas")
     currency_pair = currency + "_GBP"
-    logging_get_exchange.info(
-        f"Сформировали данные для направления запроса по АПИ {currency_pair}"
-    )
+    logging_get_exchange.info(f"Сформировали данные для направления запроса по АПИ {currency_pair}")
 
     api_url = f"https://api.api-ninjas.com/v1/exchangerate?pair={currency_pair}"
     response = requests.get(api_url, headers={"X-Api-Key": my_api})
@@ -36,7 +34,7 @@ def get_exchange(currency):
 
 
 def get_stock_prices(stock):
-    '''Функция принимает название акции и через API возвращает стоимость'''
+    """Функция принимает название акции и через API возвращает стоимость"""
     logging_get_stock_prices.info("Запуск функции")
     load_dotenv()
     my_api = os.getenv("ApiKey_ninjas")
@@ -48,7 +46,5 @@ def get_stock_prices(stock):
         logging_get_stock_prices.info("Данные по API получены успешно")
         return response.json()
     else:
-        logging_get_stock_prices.info(
-            f"Error:, {response.status_code}, {response.text}"
-        )
+        logging_get_stock_prices.info(f"Error:, {response.status_code}, {response.text}")
         return f"Error:, {response.status_code}, {response.text}"

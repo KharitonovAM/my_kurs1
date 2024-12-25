@@ -26,20 +26,16 @@ def take_3_month_before(second_data):
         # определяем что на входе месяц с января по март
         else:
             logging_take_3_month_before.info("Определили что индекс месяца менее 4")
-            start_date = second_data.replace(
-                year=(second_data.year - 1), month=(12 - (3 - second_data.month))
-            )
+            start_date = second_data.replace(year=(second_data.year - 1), month=(12 - (3 - second_data.month)))
         logging_take_3_month_before.info("Функция усппешно завершила свою работу")
         return start_date
     except Exception as e:
-        logging_take_3_month_before.error(f'Возникла ошибка {e}')
-        print(f'Возникла ошибка {e} проверьте корректность введённых данных')
+        logging_take_3_month_before.error(f"Возникла ошибка {e}")
+        print(f"Возникла ошибка {e} проверьте корректность введённых данных")
 
 
 @report_log
-def spending_by_category(
-    transactions: pd.DataFrame, category: str, date: Optional[str] = None
-) -> pd.DataFrame:
+def spending_by_category(transactions: pd.DataFrame, category: str, date: Optional[str] = None) -> pd.DataFrame:
     """Принимает на вход датафрейм с операциями, название категории и дату.
     Если дата не передана, то берется текущая дата.
     Функция возвращает траты по заданной категории за последние три месяца (от переданной даты)
@@ -48,9 +44,7 @@ def spending_by_category(
     try:
         logging_spending_by_category.info("Запуск функции")
         # Приводим значения столбца Дата операции к формату data
-        transactions["Дата операции"] = pd.to_datetime(
-            transactions["Дата операции"], format="%d.%m.%Y %H:%M:%S"
-        )
+        transactions["Дата операции"] = pd.to_datetime(transactions["Дата операции"], format="%d.%m.%Y %H:%M:%S")
         # определяем есть ли дата завершения период отчета и если нет, задаём согласно ТЗ
         if date is None:
             logging_spending_by_category.info("Определили, что дата не передана")
@@ -64,12 +58,10 @@ def spending_by_category(
         # Формируем рабочий датафрейм
         logging_spending_by_category.info("Приступаем к формированию датафрема")
         working_dataframe = transactions[transactions["Дата операции"] <= end_data]
-        working_dataframe = working_dataframe[
-            working_dataframe["Дата операции"] >= start_data
-        ]
+        working_dataframe = working_dataframe[working_dataframe["Дата операции"] >= start_data]
         working_dataframe = working_dataframe[working_dataframe["Категория"] == category]
         logging_spending_by_category.info("Датафрейм сформирован, программа завершается")
         return working_dataframe["Сумма операции"].sum()
     except Exception as e:
-        logging_spending_by_category.error(f'Возникла ошибка {e}')
-        print(f'Возникла ошибка {e} проверьте корректность данных')
+        logging_spending_by_category.error(f"Возникла ошибка {e}")
+        print(f"Возникла ошибка {e} проверьте корректность данных")
