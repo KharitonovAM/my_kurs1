@@ -8,7 +8,8 @@ from logs.logs_settint import mylogconfig
 from src.api_utils import get_exchange, get_stock_prices
 from src.setting import BASE_DIR
 from src.utill_web import (make_interval_dates, make_list_dict_by_task,
-                           take_filename_from_data)
+                           take_filename_from_data, web_meeting,
+                           take_list_with_for_last_number_cards)
 
 # импортируем настройки логирования
 logging.basicConfig = mylogconfig
@@ -23,6 +24,7 @@ logging_make_list_dict_from_json_data_stocks = logging.getLogger(
     "make_list_dict_from_json_data_stocks"
 )
 logging_events = logging.getLogger("events")
+logging_main_page = logging.getLogger('main_page')
 
 
 def get_data_from_exel(filename, type_of_operation, start_data, diap_data):
@@ -204,3 +206,40 @@ def events(start_data, date_range="M"):
     json_data = json.dumps(return_dict, ensure_ascii=False, indent=4)
     logging_events.info("Функция отработала корректно")
     print(json_data)
+
+
+def main_page(input_data):
+    '''Принимает на вход строку с датой и временем в формате YYYY-MM-DD HH:MM:SS
+ и возвращает JSON-ответ со следующими данными:
+
+    -Приветствие
+    -По каждой карте:
+        последние 4 цифры карты;
+        общая сумма расходов;
+        кешбэк (1 рубль на каждые 100 рублей)
+    - Топ-5 транзакций по сумме платежа
+    - Курс валют
+    - Стоимость акций из S&P500
+    '''
+    logging_main_page.info(f"Запуск программы с параметрами {input_data}")
+    # Получаем название файла из дата
+    exel_filename = take_filename_from_data()
+    logging_main_page.info(f"Получили название файла с данными {exel_filename}")
+    greeting = web_meeting()
+    logging_main_page.info(f"Сформировали приветствие в соответствии с текущим временем {greeting}")
+    # Формируем предварительно рабочий датафрейм (без учета временного интервала)
+    exel_dataframe = pd.read_excel(exel_filename)
+    only_real_operations = exel_dataframe[exel_dataframe.loc[:, "Статус"] == "OK"]
+    only_real_operations.loc["Дата операции"] = pd.to_datetime(
+        only_real_operations.loc[:, "Дата операции"], format="%d.%m.%Y %H:%M:%S"
+    )
+    logging_main_page.info(
+        f"Сформировали датафрейм из информации файла {exel_filename} согласно ТЗ"
+    )
+
+    # получаем интервал дат, в рамках которых будет формировать рабочий датафрейм:
+    start_data_interval = make_interval_dates(input_data, 'M')
+
+
+
+main_page('2021-12-01 10:10:27')

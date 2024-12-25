@@ -65,6 +65,3 @@ def spending_by_category(
     working_dataframe = working_dataframe[working_dataframe["Категория"] == category]
     logging_spending_by_category.info("Датафрейм сформирован, программа завершается")
     return working_dataframe["Сумма операции"].sum()
-
-
-print(take_3_month_before(datetime.datetime(2024, 1, 1, 0, 0, 0)))

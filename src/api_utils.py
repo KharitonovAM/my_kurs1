@@ -36,6 +36,7 @@ def get_exchange(currency):
 
 
 def get_stock_prices(stock):
+    '''Функция принимает название акции и через API возвращает стоимость'''
     logging_get_stock_prices.info("Запуск функции")
     load_dotenv()
     my_api = os.getenv("ApiKey_ninjas")

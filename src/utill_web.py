@@ -67,7 +67,7 @@ def make_list_dict_by_task(list_dict, first_category, second_category):
 
 
 def web_meeting():
-    '''Генерирует приветствие в зависимости от текущего времени суток: утро, день, вечер '''
+    '''Генерирует приветствие в зависимости от текущего времени суток: утро, день, вечер'''
     logging_web_meeting.info('Старт работы программы')
     #Получаем текущее время
     the_time = datetime.datetime.now()

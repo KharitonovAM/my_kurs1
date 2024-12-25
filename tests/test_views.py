@@ -32,6 +32,8 @@ def test_events_wrong_data():
 @patch("src.views.make_list_dict_from_json_data_stocks")
 @patch("src.views.make_list_dict_from_json_data_currencies")
 def test_events(stocks_mock, currencies_mock):
+    '''Тестируем функцию events что получив на вход корректные данные,
+    возвращается результат в соответствии с ожиданиями'''
     stocks_mock.return_value = [{"FFP": 110}, {"RTR": 57}]
     currencies_mock.return_value = [{"eur": 110}, {"usd": 107}]
     assert events("2019-10-10 15:17:31") == None

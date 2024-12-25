@@ -28,36 +28,52 @@ def test_make_list_dict_by_task():
     ],
 )
 def test_make_interval_dates(start_data, interval, result_data):
+    '''Тестируем make_interval_dates: передаем стартовые данные, интервал,
+    полученный результат соответствует ожиданиям'''
     assert str(make_interval_dates(start_data, interval)) == result_data
 
 
 def test_make_interval_dates_value_error():
+    '''Тестируем make_interval_dates: передаем стартовые данные, некоректный интервал,
+    в результате возбуждается исключение'''
     with pytest.raises(ValueError):
         assert make_interval_dates("2012-11-01 23:54:16", "N")
 
 @freeze_time('2012-11-01 08:08:00')
 def test_web_meeting_morning():
+    '''Тестируем web_meeting_morning, что получчив данные утреннего времении,
+    возвращаем Доброе утро'''
     assert web_meeting() == 'Доброе утро'
 
 
 @freeze_time('2012-11-01 12:08:00')
 def test_web_meeting_day():
+    '''Тестируем web_meeting_morning, что получчив данные дневного времении,
+    возвращаем Добрый день'''
     assert web_meeting() == 'Добрый день'
 
 
 @freeze_time('2012-11-01 19:08:00')
 def test_web_meeting_evening():
+    '''Тестируем web_meeting_morning, что получчив данные вечернего времении,
+    возвращаем Добрый вечер'''
     assert web_meeting() == 'Добрый вечер'
 
 
 @freeze_time('2012-11-01 23:08:00')
 def test_web_meeting_night():
+    '''Тестируем web_meeting_morning, что получчив данные ночного времении,
+    возвращаем Доброй ночи'''
     assert web_meeting() == 'Доброй ночи'
 
 
 def test_take_list_with_for_last_number_cards(my_dataset):
+    '''Тестируем wtake_list_with_for_last_number_cards,
+    что получив корректные данные получаем результат в соответствии с ожиданиями'''
     assert take_list_with_for_last_number_cards(my_dataset, 'Номер карты') == ['2251', '4321']
 
 def test_take_list_with_for_last_number_cards_with_mist():
+    '''Тестируем wtake_list_with_for_last_number_cards,
+    что в случае отсутствия датафрейма возбуждается исключение'''
     with pytest.raises(TypeError):
         assert take_list_with_for_last_number_cards()
