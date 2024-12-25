@@ -7,9 +7,9 @@ import pandas as pd
 from logs.logs_settint import mylogconfig
 from src.api_utils import get_exchange, get_stock_prices
 from src.setting import BASE_DIR
-from src.utill_web import (make_interval_dates, make_list_dict_by_task,
-                           take_filename_from_data,
-                           take_list_with_for_last_number_cards, web_meeting)
+from src.utils import (make_interval_dates, make_list_dict_by_task,
+                       take_filename_from_data,
+                       take_list_with_for_last_number_cards, web_meeting)
 
 # импортируем настройки логирования
 logging.basicConfig = mylogconfig

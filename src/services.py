@@ -5,7 +5,7 @@ import re
 import pandas as pd
 
 from logs.logs_settint import mylogconfig
-from src.utill_web import take_filename_from_data
+from src.utils import take_filename_from_data
 
 # импортируем настройки логирования
 logging.basicConfig = mylogconfig
