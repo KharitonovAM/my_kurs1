@@ -2,6 +2,6 @@ from src.services import search_phone_number
 
 
 def test_search_phone_number(json_phone_rezult):
-    '''Тестируем что получая датафрейм с телефонными номерами, функция возвращает ожидаемые значения'''
+    ''' РўРµСЃС‚РёСЂСѓРµРј С‡С‚Рѕ РїРѕР»СѓС‡Р°СЏ РґР°С‚Р°С„СЂРµР№Рј СЃ С‚РµР»РµС„РѕРЅРЅС‹РјРё РЅРѕРјРµСЂР°РјРё, С„СѓРЅРєС†РёСЏ РІРѕР·РІСЂР°С‰Р°РµС‚ РѕР¶РёРґР°РµРјС‹Рµ Р·РЅР°С‡РµРЅРёСЏ'''
     test_result = search_phone_number()
     assert test_result == json_phone_rezult

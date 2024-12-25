@@ -20,3 +20,7 @@
 Выполнен отчёт spending_by_category, результат отчёта -35049.92
 Выполнен отчёт spending_by_category, результат отчёта 0.0
 Выполнен отчёт spending_by_category, результат отчёта -35049.92
+Выполнен отчёт spending_by_category, результат отчёта 0.0
+Выполнен отчёт spending_by_category, результат отчёта -35049.92
+Выполнен отчёт spending_by_category, результат отчёта 0.0
+Выполнен отчёт spending_by_category, результат отчёта -35049.92
