@@ -22,19 +22,112 @@ def test_mistake_take_data_from_json():
         assert test_take_data_from_json("no_such_file.txt")
 
 
-def test_events_wrong_data():
+def test_events_wrong_data(capsys):
     """Тестируем что при неправильных входных данных возникает ошибка"""
-    assert events("11.10.24 17:10:10") == None
+    events("11.10.24 17:10:10")
+    captured = capsys.readouterr()
+    assert captured.out == 'Возникла ошибка - проверьте logfile\nВозникла ошибка - проверьте logfile\n'
 
 
 @patch("src.views.make_list_dict_from_json_data_stocks")
 @patch("src.views.make_list_dict_from_json_data_currencies")
-def test_events(stocks_mock, currencies_mock):
+def test_events(stocks_mock, currencies_mock, capsys):
     """Тестируем функцию events что получив на вход корректные данные,
     возвращается результат в соответствии с ожиданиями"""
     stocks_mock.return_value = [{"FFP": 110}, {"RTR": 57}]
     currencies_mock.return_value = [{"eur": 110}, {"usd": 107}]
-    assert events("2019-10-10 15:17:31") == None
+    events("2019-10-10 15:17:31")
+    captured = capsys.readouterr()
+    assert captured.out == ('{\n'
+                            '    "expenses": {\n'
+                            '        "total_amount": -91585.0,\n'
+                            '        "main": [\n'
+                            '            {\n'
+                            '                "category": "Другое",\n'
+                            '                "amount": 7195.0\n'
+                            '            },\n'
+                            '            {\n'
+                            '                "category": "Супермаркеты",\n'
+                            '                "amount": 3152.0\n'
+                            '            },\n'
+                            '            {\n'
+                            '                "category": "Фастфуд",\n'
+                            '                "amount": 2117.0\n'
+                            '            },\n'
+                            '            {\n'
+                            '                "category": "Транспорт",\n'
+                            '                "amount": 1286.0\n'
+                            '            },\n'
+                            '            {\n'
+                            '                "category": "Ж/д билеты",\n'
+                            '                "amount": 1114.0\n'
+                            '            },\n'
+                            '            {\n'
+                            '                "category": "Одежда и обувь",\n'
+                            '                "amount": 1077.0\n'
+                            '            },\n'
+                            '            {\n'
+                            '                "category": "Связь",\n'
+                            '                "amount": 500.0\n'
+                            '            },\n'
+                            '            {\n'
+                            '                "category": "Остальное",\n'
+                            '                "amount": 706.0\n'
+                            '            }\n'
+                            '        ],\n'
+                            '        "transfers_and_cash": [\n'
+                            '            {\n'
+                            '                "category": "Переводы",\n'
+                            '                "amount": 74437.0\n'
+                            '            },\n'
+                            '            {\n'
+                            '                "category": "Наличные",\n'
+                            '                "amount": 0\n'
+                            '            }\n'
+                            '        ]\n'
+                            '    },\n'
+                            '    "income": {\n'
+                            '        "total_amount": 49885.0,\n'
+                            '        "main": [\n'
+                            '            {\n'
+                            '                "category": "Пополнения",\n'
+                            '                "amount": 24550.0\n'
+                            '            },\n'
+                            '            {\n'
+                            '                "category": "Зарплата",\n'
+                            '                "amount": 22200.0\n'
+                            '            },\n'
+                            '            {\n'
+                            '                "category": "Переводы",\n'
+                            '                "amount": 2635.0\n'
+                            '            },\n'
+                            '            {\n'
+                            '                "category": "Бонусы",\n'
+                            '                "amount": 500.0\n'
+                            '            }\n'
+                            '        ]\n'
+                            '    },\n'
+                            '    "currency_rates": [\n'
+                            '        {\n'
+                            '            "currency": "FFP",\n'
+                            '            "rate": 110\n'
+                            '        },\n'
+                            '        {\n'
+                            '            "currency": "RTR",\n'
+                            '            "rate": 57\n'
+                            '        }\n'
+                            '    ],\n'
+                            '    "stock_prices": [\n'
+                            '        {\n'
+                            '            "stock": "eur",\n'
+                            '            "price": 110\n'
+                            '        },\n'
+                            '        {\n'
+                            '            "stock": "usd",\n'
+                            '            "price": 107\n'
+                            '        }\n'
+                            '    ]\n'
+                            '}\n')
 
 
 @patch("src.views.make_list_dict_from_json_data_stocks")

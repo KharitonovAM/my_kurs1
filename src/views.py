@@ -312,5 +312,5 @@ def main_page(input_data):
         logging_main_page.info("Функция отработала корректно")
         print(json_data)
     except Exception as e:
-        print(f"Возникла ошибка проверьте log-file")
+        print("Возникла ошибка проверьте log-file")
         logging_main_page.error(f"Возникла ошибка {e}")
