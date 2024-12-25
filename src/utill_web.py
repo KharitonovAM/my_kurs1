@@ -1,7 +1,7 @@
 import datetime
 import logging
 import os
-import pandas as pd
+
 
 from logs.logs_settint import mylogconfig
 

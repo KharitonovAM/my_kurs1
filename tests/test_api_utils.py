@@ -1,6 +1,5 @@
 from unittest.mock import patch
 
-
 from src.api_utils import get_exchange, get_stock_prices
 
 

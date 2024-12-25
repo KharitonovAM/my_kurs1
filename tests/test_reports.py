@@ -2,9 +2,9 @@ import datetime
 
 import pandas as pd
 import pytest
-from src.setting import excel_filename
 
 from src.reports import spending_by_category, take_3_month_before
+from src.setting import excel_filename
 
 
 def test_spending_by_category_without_data(spending_without_data):

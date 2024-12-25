@@ -4,8 +4,7 @@ from unittest.mock import patch
 
 import pytest
 
-from src.views import (events,
-                       take_data_from_json)
+from src.views import events, take_data_from_json
 
 
 def test_take_data_from_json():

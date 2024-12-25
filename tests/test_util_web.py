@@ -2,7 +2,8 @@ import pytest
 from freezegun import freeze_time
 
 from src.utill_web import (make_interval_dates, make_list_dict_by_task,
-                           take_filename_from_data, web_meeting, take_list_with_for_last_number_cards)
+                           take_filename_from_data,
+                           take_list_with_for_last_number_cards, web_meeting)
 
 
 def test_take_filename_from_data():
