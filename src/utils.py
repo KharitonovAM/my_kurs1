@@ -2,7 +2,6 @@ import datetime
 import logging
 import os
 
-
 from logs.logs_settint import mylogconfig
 
 # импортируем настройки логирования
