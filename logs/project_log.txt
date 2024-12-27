@@ -1,0 +1,74 @@
+2024-12-25 16:21:49,947 - INFO- main_page - Запуск программы с параметрами 2019-12-30 10:10:27
+2024-12-25 16:21:49,947 - INFO- take_filename_from_data - Запуск программы
+2024-12-25 16:21:49,948 - INFO- take_filename_from_data - Отработала штатно
+2024-12-25 16:21:49,948 - INFO- main_page - Получили название файла с данными operations.xlsx
+2024-12-25 16:21:49,948 - INFO- logging_web_meeting - Старт работы программы
+2024-12-25 16:21:49,948 - INFO- logging_web_meeting - На старте программы время 2024-12-25 16:21:49.948726
+2024-12-25 16:21:49,948 - INFO- logging_web_meeting - Добрый день
+2024-12-25 16:21:49,948 - INFO- main_page - Сформировали приветствие в соответствии с текущим временем Добрый день
+2024-12-25 16:21:51,573 - INFO- make_interval_dates - Запустили программу
+2024-12-25 16:21:51,573 - INFO- main_page - Определил интервал с 2019-12-01 00:00:00 по 2019-12-30 10:10:27
+2024-12-25 16:21:51,575 - INFO- main_page - Сформировали датафрейм с учетом временных ограничений
+2024-12-25 16:21:51,580 - INFO- main_page - Добавил два столбца: абсолютное значение и кэшбек
+2024-12-25 16:21:51,580 - INFO- take_list_with_for_last_number_cards - Старт программы
+2024-12-25 16:21:51,580 - INFO- take_list_with_for_last_number_cards - функция отработала штатно
+2024-12-25 16:21:51,582 - INFO- main_page - Cформирован список словарей [{номер: карты: сумма операций по ней}
+2024-12-25 16:21:51,582 - INFO- make_list_dict_by_task - Запустили программу
+2024-12-25 16:21:51,582 - INFO- make_list_dict_by_task - Отработала штатно
+2024-12-25 16:21:51,583 - INFO- main_page - сформировали список словарей с данными по картам в соответствии с ТЗ
+2024-12-25 16:21:51,585 - INFO- main_page - Cформирован список словарей c информацией о топ5 операций
+2024-12-25 16:21:51,585 - INFO- take_data_from_json - Старт программы
+2024-12-25 16:21:51,586 - INFO- take_data_from_json - Программа успешно отработала
+2024-12-25 16:21:51,586 - INFO- make_list_dict_from_json_data_currencies - Старт программы
+2024-12-25 16:21:51,586 - INFO- get_exchange - Старт работы
+2024-12-25 16:21:51,587 - INFO- get_exchange - Получили данные по API из дотенв
+2024-12-25 16:21:51,587 - INFO- get_exchange - Сформировали данные для направления запроса по АПИ CNY_GBP
+2024-12-25 16:21:51,590 - DEBUG- urllib3.connectionpool - Starting new HTTPS connection (1): api.api-ninjas.com:443
+2024-12-25 16:21:52,315 - DEBUG- urllib3.connectionpool - https://api.api-ninjas.com:443 "GET /v1/exchangerate?pair=CNY_GBP HTTP/11" 200 55
+2024-12-25 16:21:52,316 - INFO- get_exchange - Данные по АПИ получены
+2024-12-25 16:21:52,316 - INFO- get_exchange - Старт работы
+2024-12-25 16:21:52,317 - INFO- get_exchange - Получили данные по API из дотенв
+2024-12-25 16:21:52,317 - INFO- get_exchange - Сформировали данные для направления запроса по АПИ CHF_GBP
+2024-12-25 16:21:52,318 - DEBUG- urllib3.connectionpool - Starting new HTTPS connection (1): api.api-ninjas.com:443
+2024-12-25 16:21:53,111 - DEBUG- urllib3.connectionpool - https://api.api-ninjas.com:443 "GET /v1/exchangerate?pair=CHF_GBP HTTP/11" 200 55
+2024-12-25 16:21:53,112 - INFO- get_exchange - Данные по АПИ получены
+2024-12-25 16:21:53,112 - INFO- get_exchange - Старт работы
+2024-12-25 16:21:53,113 - INFO- get_exchange - Получили данные по API из дотенв
+2024-12-25 16:21:53,113 - INFO- get_exchange - Сформировали данные для направления запроса по АПИ DKK_GBP
+2024-12-25 16:21:53,114 - DEBUG- urllib3.connectionpool - Starting new HTTPS connection (1): api.api-ninjas.com:443
+2024-12-25 16:21:53,572 - DEBUG- urllib3.connectionpool - https://api.api-ninjas.com:443 "GET /v1/exchangerate?pair=DKK_GBP HTTP/11" 200 55
+2024-12-25 16:21:53,572 - INFO- get_exchange - Данные по АПИ получены
+2024-12-25 16:21:53,572 - INFO- make_list_dict_from_json_data_stocks - Старт программы
+2024-12-25 16:21:53,573 - INFO- get_stock_prices - Запуск функции
+2024-12-25 16:21:53,573 - INFO- get_stock_prices - данные из dotenv получены
+2024-12-25 16:21:53,574 - DEBUG- urllib3.connectionpool - Starting new HTTPS connection (1): api.api-ninjas.com:443
+2024-12-25 16:21:54,344 - DEBUG- urllib3.connectionpool - https://api.api-ninjas.com:443 "GET /v1/stockprice?ticker=AAPL HTTP/11" 200 120
+2024-12-25 16:21:54,344 - INFO- get_stock_prices - Данные по API получены успешно
+2024-12-25 16:21:54,345 - INFO- get_stock_prices - Запуск функции
+2024-12-25 16:21:54,346 - INFO- get_stock_prices - данные из dotenv получены
+2024-12-25 16:21:54,347 - DEBUG- urllib3.connectionpool - Starting new HTTPS connection (1): api.api-ninjas.com:443
+2024-12-25 16:21:55,388 - DEBUG- urllib3.connectionpool - https://api.api-ninjas.com:443 "GET /v1/stockprice?ticker=AMZN HTTP/11" 200 127
+2024-12-25 16:21:55,388 - INFO- get_stock_prices - Данные по API получены успешно
+2024-12-25 16:21:55,388 - INFO- get_stock_prices - Запуск функции
+2024-12-25 16:21:55,389 - INFO- get_stock_prices - данные из dotenv получены
+2024-12-25 16:21:55,390 - DEBUG- urllib3.connectionpool - Starting new HTTPS connection (1): api.api-ninjas.com:443
+2024-12-25 16:21:56,151 - DEBUG- urllib3.connectionpool - https://api.api-ninjas.com:443 "GET /v1/stockprice?ticker=GOOGL HTTP/11" 200 125
+2024-12-25 16:21:56,151 - INFO- get_stock_prices - Данные по API получены успешно
+2024-12-25 16:21:56,152 - INFO- get_stock_prices - Запуск функции
+2024-12-25 16:21:56,153 - INFO- get_stock_prices - данные из dotenv получены
+2024-12-25 16:21:56,155 - DEBUG- urllib3.connectionpool - Starting new HTTPS connection (1): api.api-ninjas.com:443
+2024-12-25 16:21:56,955 - DEBUG- urllib3.connectionpool - https://api.api-ninjas.com:443 "GET /v1/stockprice?ticker=MSFT HTTP/11" 200 132
+2024-12-25 16:21:56,955 - INFO- get_stock_prices - Данные по API получены успешно
+2024-12-25 16:21:56,956 - INFO- get_stock_prices - Запуск функции
+2024-12-25 16:21:56,956 - INFO- get_stock_prices - данные из dotenv получены
+2024-12-25 16:21:56,957 - DEBUG- urllib3.connectionpool - Starting new HTTPS connection (1): api.api-ninjas.com:443
+2024-12-25 16:21:57,687 - DEBUG- urllib3.connectionpool - https://api.api-ninjas.com:443 "GET /v1/stockprice?ticker=TSLA HTTP/11" 200 122
+2024-12-25 16:21:57,687 - INFO- get_stock_prices - Данные по API получены успешно
+2024-12-25 16:21:57,688 - INFO- main_page - Считали данные из json получчив необходимую информацию по API
+2024-12-25 16:21:57,688 - INFO- make_list_dict_by_task - Запустили программу
+2024-12-25 16:21:57,688 - INFO- make_list_dict_by_task - Отработала штатно
+2024-12-25 16:21:57,688 - INFO- make_list_dict_by_task - Запустили программу
+2024-12-25 16:21:57,688 - INFO- make_list_dict_by_task - Отработала штатно
+2024-12-25 16:21:57,688 - INFO- main_page - Сформировали необходимые словари на базе json-файлов
+2024-12-25 16:21:57,688 - INFO- main_page - Сформировали итоговый словарь в соответствии с ТЗ
+2024-12-25 16:21:57,689 - INFO- main_page - Функция отработала корректно
